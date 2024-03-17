@@ -1,0 +1,83 @@
+
+@keyframes logo_animation {
+        from {
+            width: 25px;
+            opacity: 0;
+        }
+        to {
+            width: 475px;
+            opacity: 1;
+        }
+}
+
+#logo {
+    animation-name: logo_animation;
+    animation-duration: 5s;
+}
+
+/* body element to use the Poppins font (using Google fonts) with serif as a backup.  
+It should also use the image “concrete_seamless.png” as a background-image with a 
+backup color of #f1f1f1 */
+body {
+    font-family: "Poppins", sans-serif;
+    background-image: url("../images/concrete_seamless.png");
+    background-color: #f1f1f1;
+}
+
+/* css for the header tag (all instances) to use flex */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*  css for the nav_links class to use flex to match our example. 
+Do not modify the list items or the links - modify the nav_links 
+class to use flex. */
+.nav_links {
+    display: flex;
+    flex-direction: column;
+}
+
+/* links have the same color even after being visited */
+a:visited {
+    color: blue;
+}
+
+/* Add rounded borders to card headers */
+.card > header {
+    background-color: #288088;
+    border: 2px solid #45ADAD;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+} 
+
+.pricing {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+/* round the borders of the cards */
+.card {
+    flex-basis: 450px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+/*  */
+.gallery img {
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
