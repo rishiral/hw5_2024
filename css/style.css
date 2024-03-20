@@ -1,4 +1,4 @@
-
+/* Animate the logo growing in size on page load */
 @keyframes logo_animation {
         from {
             width: 25px;
@@ -10,41 +10,42 @@
         }
 }
 
+/* Execute the logo animation with a duration of 5 seconds */
 #logo {
     animation-name: logo_animation;
     animation-duration: 5s;
 }
 
-/* body element to use the Poppins font (using Google fonts) with serif as a backup.  
-It should also use the image “concrete_seamless.png” as a background-image with a 
-backup color of #f1f1f1 */
+/* Body uses the Poppins font with sans-serif as a backup. 
+Uses the image “concrete_seamless.png” as a background-image 
+with a backup color of #f1f1f1 */
 body {
     font-family: "Poppins", sans-serif;
     background-image: url("../images/concrete_seamless.png");
     background-color: #f1f1f1;
 }
 
-/* css for the header tag (all instances) to use flex */
+/* Header uses flex in a column with items centered */
 header {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
 }
 
-/*  css for the nav_links class to use flex to match our example. 
-Do not modify the list items or the links - modify the nav_links 
-class to use flex. */
+/* Nav bar links are in a column and use flex*/
 .nav_links {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
 }
 
-/* links have the same color even after being visited */
+/* Links have the same color even after being visited */
 a:visited {
     color: blue;
 }
 
-/* Add rounded borders to card headers */
+/* Card headers have rounded borders */
 .card > header {
     background-color: #288088;
     border: 2px solid #45ADAD;
@@ -54,6 +55,7 @@ a:visited {
     border-top-right-radius: 50px;
 } 
 
+/* Pricing is listed in a row with wrap and items centered horizontally and vertically */
 .pricing {
     display: flex;
     flex-direction: row;
@@ -62,22 +64,120 @@ a:visited {
     justify-content: center;
 }
 
-/* round the borders of the cards */
+/* Round the borders of the cards */
 .card {
     flex-basis: 450px;
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
 }
 
-/*  */
+/* Gallery images have a solid light blue border of 10px with width 300px and margin 10px */
 .gallery img {
     border: 10px solid #50C7C7;
     margin: 10px;
     width: 300px;
 }
 
+/* Gallery uses flex with wrap and items centered */
 .gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+/* Changes for screens that are >= 900px in width */
+@media screen and (min-width: 900px) {
+    /* Adds space between the first header and rest of page because 
+    the header's position is fixed */
+    main {
+        padding-top: 80px;
+    }
+    
+    /* Header and navigation links are displayed in a row. Logo is 
+    to the far left and navigation links are to the far right */
+    header, .nav_links {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    /* Pricing has no wrap so they appear in one row */
+    .pricing {
+        flex-wrap: nowrap;
+    }
+
+    /* Cards have size 275px */
+    .card {
+        flex-basis: 275px;
+    }
+
+    /* First header (with logo and navigation links) is fixed so 
+    it follows the user's scrolling */
+    body > header:first-of-type {
+        position: fixed;
+        width: 100%;
+        z-index: 900;
+    }
+
+}
+
+/* No logo animation when prefers-reduced-motion is enabled */
+@media (prefers-reduced-motion: reduce) {
+    #logo {
+        animation: none;
+    }
+}
+
+/* Specifies changes for print view */
+@media print {
+    /* Body uses Arial font with Helvetica as backup. 
+    There is no background image */
+    body {
+        font-family: Arial, Helvetica;
+        background-image: none;
+    }
+
+    /* Naviation takes up full width so that we can use 
+    justify content on the links */
+    nav {
+        width: 100%;
+    }
+
+    /* Links are displayed in a row with space around each link */
+    .nav_links {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    /* Pricing has no wrap so they appear in one row. 
+    Bottoms are aligned */
+    .pricing {
+        align-items: end;
+        flex-wrap: nowrap;
+    }
+
+    /* Cards have a solid light blue 2px border and size of 325px */
+    .card {
+        border: 2px solid #45ADDD;
+        flex-basis: 325px;
+    }
+
+    /* No gallery elements are visible */
+    .gallery, #gallery {
+        display: none;
+    }
+
+    /* Adds thumbs up emoji after each second list item */
+    li:nth-child(2)::after {
+        content: "\01F44D";
+    }
+
+    /* Removes thumbs up emoji from the second navigation link */
+    .nav_links li::after {
+        content: none;
+    }
+
+    /* Adds page break before the footer */
+    footer {
+        page-break-before: always;
+    }
 }
